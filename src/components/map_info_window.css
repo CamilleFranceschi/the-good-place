@@ -1,0 +1,17 @@
+.map_info_window {
+  width: 0px;
+  height: 0px;
+  background-color: orange;
+  border: 1px solid #999;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.map_info_window.opened {
+  background-color: pink;
+  border-color: black;
+/*  width: calc(100% + 3vw);
+  height: calc(100% + 3vh);*/
+  width: 50px;
+  height: 50px;
+}

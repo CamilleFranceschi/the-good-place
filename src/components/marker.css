@@ -9,4 +9,6 @@
 .marker.selected {
   background-color: yellow;
   border-color: black;
+  width: calc(100% + 3vw);
+  height: calc(100% + 3vh);
 }

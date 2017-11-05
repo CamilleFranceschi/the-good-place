@@ -4,9 +4,10 @@
 }
 
 .main {
-  flex-basis: 60%;
+  flex-basis: 40%;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .search {
@@ -33,4 +34,30 @@
   height: 100vh;
   top: 0;
   position: sticky;
+}
+
+.filters {
+  display: flex;
+}
+
+.slider {
+  position: fixed;
+  bottom: 3vh;
+  width: 29vw;
+  left: 26vw;
+}
+
+
+.rc-slider-rail {
+  background: yellow !important;
+
+}
+
+.rc-slider-track {
+  background: blue !important;
+}
+
+.rc-slider-handle {
+  background: green !important;
+  border-color: purple !important;
 }
