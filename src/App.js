@@ -6,6 +6,7 @@ import Filter from './components/filter';
 import ZoomSlider from './components/zoom_slider';
 import GoogleMapReact from 'google-map-react';
 import MapInfoWindow from './components/map_info_window';
+
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
@@ -22,6 +23,7 @@ class App extends Component {
       search: "",
       categoryFilters: [],
       typeFilters: [],
+      clickedMarker: null,
       zoom: 12
     };
   }
@@ -91,6 +93,11 @@ class App extends Component {
 
   handleZoomSlider = (val) => {
     this.setState({zoom: val})
+  }
+
+  handleClickMarker = (event) => {
+    console.log(event);
+    return this.setState({clickedMarker: event});
   }
 
   render() {
@@ -459,25 +466,21 @@ class App extends Component {
     return (
       <div className="app">
         <div className="map">
-          <GoogleMapReact center={center} zoom={this.state.zoom} options={mapOptions}>
-              {filteredPlaces.map((place) => {
+          <GoogleMapReact center={center} zoom={this.state.zoom} options={mapOptions} onChildClick={this.handleClickMarker}>
+              {filteredPlaces.map((place, index) => {
                 return (
-                  <MapInfoWindow
-                    place={place}
-                    lat={place.lat}
-                    lng={place.lng}
-                    opened={place === this.state.selectedPlace} />
-                  // <MapInfoWindow place={place} lat={place.lat} lng={place.lng} selected={place === this.state.selectedPlace} />
-                );
-              })}
-              {filteredPlaces.map((place) => {
-                return (
-                  <Marker
-                    place={place}
-                    lat={place.lat}
-                    lng={place.lng}
-                    selected={place === this.state.selectedPlace}>
-                  </ Marker>
+
+                    <Marker
+                      key={index}
+                      place={place}
+                      lat={place.lat}
+                      lng={place.lng}
+                      selected={place === this.state.selectedPlace}
+                       >
+                      <MapInfoWindow
+                        clicked={index === this.state.clickedMarker} />
+                    </ Marker>
+
                 );
               })}
           </ GoogleMapReact>

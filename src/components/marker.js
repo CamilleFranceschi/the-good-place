@@ -5,11 +5,16 @@ class Marker extends Component {
 
   render () {
     let classes= "marker"
+
     if (this.props.selected) {
       classes = classes + " selected"
     }
+
+
     return (
-      <div className={classes}>{this.props.place.price}$</div>
+      <div>
+        <div className={classes} >{this.props.place.price}$</div>
+      </div>
     );
   }
 }

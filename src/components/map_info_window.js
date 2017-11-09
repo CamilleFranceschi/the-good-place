@@ -3,12 +3,12 @@ import "./map_info_window.css";
 
 class MapInfoWindow extends Component {
   render() {
-    let classes= "map_info_window"
-    if (this.props.opened) {
-      classes = classes + " opened"
+        let classe= "map_info_window"
+      if (this.props.clicked) {
+      classe = classe + " opened"
     }
     return (
-      <div className={classes}>{this.props.place.price}$ùùùù</div>
+      <div className={classe} >$ùùùù</div>
     );
   }
 }
