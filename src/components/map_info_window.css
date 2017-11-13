@@ -5,13 +5,15 @@
   border: 1px solid #999;
   border-radius: 2px;
   text-align: center;
+  font-size: 20px;
 }
 
 .map_info_window.opened {
-  background-color: pink;
+  background-color: blue;
   border-color: black;
 /*  width: calc(100% + 3vw);
   height: calc(100% + 3vh);*/
   width: 880px;
   height: 50px;
+  font-size: 30px;
 }

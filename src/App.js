@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import Place from './components/place';
 import Marker from './components/marker';
-import Filter from './components/filter';
-import ZoomSlider from './components/zoom_slider';
+// import Filter from './components/filter';
+import ButtonFilter from './components/button_filter';
+import WindowFilter from './components/window_filter';
 import GoogleMapReact from 'google-map-react';
 import MapInfoWindow from './components/map_info_window';
-
-import Slider, { Range } from 'rc-slider';
+import Slider  from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 // // https://dribbble.com/shots/1971323-Real-Estate-App/attachments/343593
@@ -23,8 +23,16 @@ class App extends Component {
       search: "",
       categoryFilters: [],
       typeFilters: [],
-      clickedMarker: null,
-      zoom: 12
+      activeMarker: null,
+      showingInfoWindow: null,
+      zoom: 12,
+      loaded: false, 
+      showingFilterWindow: false, 
+      filterType: null,
+      bar_checked: false,
+      restaurant_checked: false,
+      hipster_checked: false,
+      posh_checked: false
     };
   }
   componentDidMount() {
@@ -34,7 +42,8 @@ class App extends Component {
         this.setState({
           places: data,
           allPlaces: data,
-          selectedPlace: data[0]
+          selectedPlace: data[0],
+          loaded: true
         })
       })
   }
@@ -45,13 +54,11 @@ class App extends Component {
     })
   }
 
-
   selectMarker = (marker) => {
     this.setState({
       selectedMarker: marker
     })
   }
-
 
   handleSearch = (event) => {
     this.setState({
@@ -59,54 +66,166 @@ class App extends Component {
     })
   }
 
-  handleCategoryFilters = (event) => {
-    let { categoryFilters } = this.state;
+  handleCategoryFilters = () => {
+    // TODO
+    // let { categoryFilters } = this.state;
+  
+    // if (this.state.posh_checked) {
+    //   categoryFilters[categoryFilters.length] = 'posh'
+    //   this.setState({
+    //     categoryFilters: categoryFilters
+    //   })
+    // } 
 
-    if(event.target.checked) {
-      categoryFilters[categoryFilters.length] = event.target.name
-      this.setState({
-        categoryFilters: categoryFilters
-      })
-    }
-    else {
-      this.setState({
-        categoryFilters: categoryFilters.filter((categoryFilter) => { return (categoryFilter !== event.target.name) } )
-      })
-    }
+    // if (this.state.posh_checked === false) {
+    //   this.setState({
+    //     categoryFilters: categoryFilters.filter((categoryFilter) => { return (categoryFilter !== 'posh') } )
+    //   })
+    // }
+
+    // if (this.state.hipster_checked) {
+    //   categoryFilters[categoryFilters.length] = 'hipster'
+    //   this.setState({
+    //     categoryFilters: categoryFilters
+    //   })
+    // } 
+
+    // if (this.state.hipster_checked === false) {
+    //   this.setState({
+    //     categoryFilters: categoryFilters.filter((categoryFilter) => { return (categoryFilter !== 'hipster') } )
+    //   })
+    // }
   }
 
-  handleTypeFilters = (event) => {
+  handleTypeFilters = () => {
+ 
     let { typeFilters } = this.state;
 
-    if(event.target.checked) {
-      typeFilters[typeFilters.length] = event.target.name
+    if (this.state.restaurant_checked) {
+      if (this.state.bar_checked) {
+        typeFilters[0] = 'bar'
+        typeFilters[1] = 'restaurant'
+      } else {
+        typeFilters = []
+        typeFilters[0] = 'restaurant'
+      }
+      this.setState({
+        typeFilters: typeFilters
+      })
+    } 
+
+    if (this.state.restaurant_checked === false) {
+      if (this.state.bar_checked) {
+        typeFilters = []
+        typeFilters[0] = 'bar'
+      } else {
+        typeFilters = []
+      }
       this.setState({
         typeFilters: typeFilters
       })
     }
-    else {
-      this.setState({
-        typeFilters: typeFilters.filter((typeFilter) => { return (typeFilter !== event.target.name) } )
-      })
-    }
+  }
+
+  handleFilters = () => {
+      this.handleTypeFilters();
+      this.handleCategoryFilters();
+  }
+
+  onButtonApplyFilterClicked = () => {
+    this.setState(
+      {
+        showingFilterWindow: false
+      }
+    );
+    this.handleFilters()
   }
 
   handleZoomSlider = (val) => {
     this.setState({zoom: val})
   }
 
-  handleClickMarker = (event) => {
-    console.log(event);
-    return this.setState({clickedMarker: event});
+  onFilterButtonClicked = (filter_type) => {
+    this.setState({ 
+      showingFilterWindow: true,
+      filterType: filter_type
+    });
+
   }
 
+  onButtonCancelFilterClicked = () => {
+    this.setState({ 
+      showingFilterWindow: false
+    });
+  }
+
+
+  onMarkerClick = (key, childProps) => {
+    console.log('childProps', childProps.place);
+    this.setState({
+      activeMarker: key,
+      showingInfoWindow: true,
+      selectedMarker: childProps.place
+    });
+  }
+
+  onInfoWindowClose = () => {
+    this.setState({
+      showingInfoWindow: false,
+      activeMarker: null
+    })
+  }
+
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  }
+
+
+  onBarChecked(is_checked) {
+    this.setState({
+      bar_checked: is_checked
+    });
+  }
+
+  onRestaurantChecked(is_checked) {
+    this.setState({
+      restaurant_checked: is_checked
+    });
+  }
+
+  onHipsterChecked(is_checked) {
+    this.setState({
+      hipster_checked: is_checked
+    });
+  }
+
+  onPoshChecked(is_checked) {
+    this.setState({
+      posh_checked: is_checked
+    });
+  }
   render() {
+    console.log(this.state.bar_checked, "bar-checked");
+    console.log(this.state.categoryFilters, "category filters");
+    console.log(this.state.typeFilters, "type filters");
+
+    if (!this.state.loaded) {
+      return <div>Loading...</div>
+    }
+
     let center = {lat: 48.8566, lng: 2.3522};
+
     if(this.state.selectedPlace) {
       center = {lat: this.state.selectedPlace.lat, lng: this.state.selectedPlace.lng};
     }
+    
     let { categoryFilters } = this.state;
-    let { typeFilters } = this.state;
+    let { typeFilters, clickedMarker } = this.state;
     let filteredPlaces = this.state.allPlaces;
 
     if(this.state.search) {
@@ -114,17 +233,14 @@ class App extends Component {
     }
 
     if(categoryFilters.length > 0) {
-      console.log(categoryFilters, "array categoryFilters")
       filteredPlaces = filteredPlaces && this.state.allPlaces.filter((place) => categoryFilters.includes(place.category))
-      console.log(filteredPlaces, "filteredPlaces")
     }
 
     if(typeFilters.length > 0) {
-      console.log(typeFilters, "array typeFilters")
       filteredPlaces = filteredPlaces && this.state.allPlaces.filter((place) => typeFilters.includes(place.type))
-      console.log(filteredPlaces, "filteredPlaces")
     }
 
+    console.log(filteredPlaces, "filteredplaces after");
     const mapStyles =
       [
         {
@@ -460,16 +576,17 @@ class App extends Component {
     ]
 
     const mapOptions = {
-      styles: mapStyles // straight out of something like snazzymaps
+      styles: mapStyles, // straight out of something like snazzymaps
+      zoomControl: false
     };
 
     return (
       <div className="app">
+        <div>{clickedMarker}</div>
         <div className="map">
-          <GoogleMapReact center={center} zoom={this.state.zoom} options={mapOptions} onChildClick={this.handleClickMarker}>
+          <GoogleMapReact center={center} zoom={this.state.zoom} options={mapOptions}  onClick={this.onInfoWindowClose} onChildClick={this.onMarkerClick}>
               {filteredPlaces.map((place, index) => {
                 return (
-
                     <Marker
                       key={index}
                       place={place}
@@ -477,13 +594,20 @@ class App extends Component {
                       lng={place.lng}
                       selected={place === this.state.selectedPlace}
                        >
-                      <MapInfoWindow
-                        clicked={index === this.state.clickedMarker} />
                     </ Marker>
-
                 );
               })}
-          </ GoogleMapReact>
+            {
+              this.state.selectedMarker && 
+              <MapInfoWindow
+                lat={this.state.selectedMarker.lat}
+                lng={this.state.selectedMarker.lng}
+                marker={this.state.selectedMarker}
+                visible={this.state.showingInfoWindow}
+                onClose={this.onInfoWindowClose} >
+              </ MapInfoWindow>
+            }
+          </ GoogleMapReact >
 
           <div className="slider">
             <Slider defaultValue={12} min={10} max={19} onChange={this.handleZoomSlider} />
@@ -492,18 +616,34 @@ class App extends Component {
         <div className="main">
           <div className="search">
             <input type="text" placeholder="Everywhere" value={this.state.search}
-              onChange={this.handleSearch} />
+              onChange={this.handleSearch}/>
           </div>
-          <div className="filters">
-            <Filter name="bar" handleChange={this.handleTypeFilters} />
-            <Filter name="restaurant" handleChange={this.handleTypeFilters} />
+          <div className="button_filters">
+            <ButtonFilter name='type' onClick={() => this.onFilterButtonClicked('type') }/>
+            <ButtonFilter name='category' onClick={() => this.onFilterButtonClicked('category') }/>
           </div>
-          <div className="filters">
-            <Filter name="hipster" handleChange={this.handleCategoryFilters} />
-            <Filter name="posh" handleChange={this.handleCategoryFilters} />
+
+          <div className="window_filters window_category">
+           {
+             this.state.showingFilterWindow && 
+             <WindowFilter 
+               onBarChecked={(checked) => this.setState({bar_checked: checked})}
+               barChecked={this.state.bar_checked}
+               onRestaurantChecked={(checked) => this.setState({restaurant_checked: checked})}
+               restaurantChecked={this.state.restaurant_checked}
+               onPoshChecked={(checked) => this.setState({posh_checked: checked})}
+               poshChecked={this.state.posh_checked}
+               onHipsterChecked={(checked) => this.setState({hipster_checked: checked})}
+               hipsterChecked={this.state.hipster_checked}
+               filter_type={this.state.filterType} 
+               visible={this.state.showingFilterWindow} 
+               onButtonCancelFilterClicked={this.onButtonCancelFilterClicked}
+               onButtonApplyFilterClicked={this.onButtonApplyFilterClicked} />
+            }
           </div>
+
           <div className="places">
-            {filteredPlaces.map((place, index)=> {
+            {filteredPlaces.map((place, index) => {
               return <Place place={place} key={index}  selectPlace={this.selectPlace} />
             })}
           </div>

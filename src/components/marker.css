@@ -11,4 +11,5 @@
   border-color: black;
   width: calc(100% + 3vw);
   height: calc(100% + 3vh);
+  font-size: 20px;
 }
