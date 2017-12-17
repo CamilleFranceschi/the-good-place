@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 
-class ButtonFilterApply extends Component {
-  render () {
-    return (
-      <div onClick={this.props.onClick}>Apply</div>
-    );
-  }
+const ButtonFilterApply = ({onClick}) => {
+  return <div onClick={onClick}>Apply</div>;
 }
 
 export default ButtonFilterApply; 

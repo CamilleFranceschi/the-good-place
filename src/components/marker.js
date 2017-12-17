@@ -1,9 +1,14 @@
 import React, {Component} from "react";
 import "./marker.css";
+import {connect} from 'react-redux';
+
 
 class Marker extends Component {
 
   render () {
+    if(!this.props.place) {
+      return <div></div>
+    }
     let classes= "marker"
 
     if (this.props.selected) {
@@ -19,5 +24,13 @@ class Marker extends Component {
   }
 }
 
-export default Marker;
+// export default Marker;
 // https://github.com/istarkov/google-map-react-examples/blob/master/web/flux/components/examples/x_events/events_map_page.jsx
+
+function mapStateToprops(state) {
+  return {
+    place: state.selectedPlace
+  }
+}
+
+export default connect(mapStateToprops)(Marker);

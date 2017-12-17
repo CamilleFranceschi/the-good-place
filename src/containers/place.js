@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import "./place.css";
-
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { selectPlace } from '../actions/index';
 
 class Place extends Component {
 
   handleHover = () => {
-    this.props.selectPlace(this.props.place);
+    this.props.selectPlace(this.props.place)
   }
 
 
@@ -25,4 +27,8 @@ class Place extends Component {
 }
 
 
-export default Place;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectPlace: selectPlace }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(Place);

@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
-import Place from './components/place';
+// import Place from './components/place';
 import Marker from './components/marker';
 // import Filter from './components/filter';
 import ButtonFilter from './components/button_filter';
 import WindowFilter from './components/window_filter';
 import GoogleMapReact from 'google-map-react';
 import MapInfoWindow from './components/map_info_window';
+
+import PlaceList from './containers/place-list';
+import PlaceDetail from './containers/place-detail';
 import Slider  from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { selectPlace } from './actions/index';
+import {connect} from 'react-redux';
 
 // // https://dribbble.com/shots/1971323-Real-Estate-App/attachments/343593
 
@@ -16,9 +21,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      places: [],
-      allPlaces: [],
-      selectedPlace: null,
+    //   places: [],
+    //   allPlaces: [],
+    //   selectedPlace: null,
       selectedMarker: null,
       search: "",
       categoryFilters: [],
@@ -35,24 +40,25 @@ class App extends Component {
       posh_checked: false
     };
   }
-  componentDidMount() {
-    fetch("https://raw.githubusercontent.com/CamilleFranceschi/places/master/places.json")
-      .then(response => response.json())
-      .then((data) => {
-        this.setState({
-          places: data,
-          allPlaces: data,
-          selectedPlace: data[0],
-          loaded: true
-        })
-      })
-  }
 
-  selectPlace = (place) => {
-    this.setState({
-      selectedPlace: place
-    })
-  }
+//   componentDidMount() {
+//     fetch("https://raw.githubusercontent.com/CamilleFranceschi/places/master/places.json")
+//       .then(response => response.json())
+//       .then((data) => {
+//         this.setState({
+//           places: data,
+//           allPlaces: data,
+//         //   selectedPlace: data[0],
+//           loaded: true
+//         })
+//       })
+//   }
+
+//   selectPlace = (place) => {
+//     this.setState({
+//       selectedPlace: place
+//     })
+//   }
 
   selectMarker = (marker) => {
     this.setState({
@@ -67,7 +73,6 @@ class App extends Component {
   }
 
   handleCategoryFilters = () => {
-    // TODO
     // let { categoryFilters } = this.state;
   
     // if (this.state.posh_checked) {
@@ -150,7 +155,6 @@ class App extends Component {
       showingFilterWindow: true,
       filterType: filter_type
     });
-
   }
 
   onButtonCancelFilterClicked = () => {
@@ -185,7 +189,6 @@ class App extends Component {
     }
   }
 
-
   onBarChecked(is_checked) {
     this.setState({
       bar_checked: is_checked
@@ -214,15 +217,15 @@ class App extends Component {
     console.log(this.state.categoryFilters, "category filters");
     console.log(this.state.typeFilters, "type filters");
 
-    if (!this.state.loaded) {
-      return <div>Loading...</div>
-    }
+    // if (!this.state.loaded) {
+    //   return <div>Loading...</div>
+    // }
 
     let center = {lat: 48.8566, lng: 2.3522};
 
-    if(this.state.selectedPlace) {
-      center = {lat: this.state.selectedPlace.lat, lng: this.state.selectedPlace.lng};
-    }
+    // if(this.state.selectedPlace) {
+    //   center = {lat: this.state.selectedPlace.lat, lng: this.state.selectedPlace.lng};
+    // }
     
     let { categoryFilters } = this.state;
     let { typeFilters, clickedMarker } = this.state;
@@ -585,14 +588,15 @@ class App extends Component {
         <div>{clickedMarker}</div>
         <div className="map">
           <GoogleMapReact center={center} zoom={this.state.zoom} options={mapOptions}  onClick={this.onInfoWindowClose} onChildClick={this.onMarkerClick}>
-              {filteredPlaces.map((place, index) => {
+              {this.props.places.map((place, index) => {
                 return (
                     <Marker
                       key={index}
                       place={place}
                       lat={place.lat}
                       lng={place.lng}
-                      selected={place === this.state.selectedPlace}
+                    //   selected={place === this.state.selectedPlace}
+                    //   onClick={this.selectPlace(place)}
                        >
                     </ Marker>
                 );
@@ -641,16 +645,28 @@ class App extends Component {
                onButtonApplyFilterClicked={this.onButtonApplyFilterClicked} />
             }
           </div>
+          <div><PlaceDetail/></div>
+          <div>
+            <PlaceList/>
+          </div>
 
-          <div className="places">
+          {/* <div className="places">
             {filteredPlaces.map((place, index) => {
               return <Place place={place} key={index}  selectPlace={this.selectPlace} />
             })}
-          </div>
+          </div> */}
         </div>
       </div>
     );
   }
 }
 
-export default App;
+
+function mapStateToProps(state) {
+    return {
+      places: state.places
+    };
+  }
+  
+  
+export default connect(mapStateToProps, null)(App);

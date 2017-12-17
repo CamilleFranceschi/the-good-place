@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 
-class ButtonFilterCancel extends Component {
-  render () {
-    return (
-      <div onClick={this.props.onClick}>Cancel</div>
-    );
-  }
+const ButtonFilterCancel = ({onClick}) => {
+  return <div onClick={onClick}>Cancel</div>;
 }
+
 export default ButtonFilterCancel;
