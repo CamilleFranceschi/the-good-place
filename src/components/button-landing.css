@@ -1,0 +1,37 @@
+
+.btn-landing {
+  color: white;
+  font-weight: bold;
+  /*background: #39D4D8;*/
+  /*transition: background 0.3s ease;*/
+
+background-color: #39D4D8;
+  text-decoration: none;
+  color: white;
+  /*bottom: 0px;*/
+  /*right: 0px;*/
+  /*padding: 30px 50px;*/
+  display: block;
+  /*z-index: 12;*/
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 13px;
+  max-width: 300px;
+  width: 50%;
+  line-height: 71px;
+  box-shadow: 0 50px 70px -20px rgba(0,0,0,0.3);
+  transition: all .2s ease-in-out;
+  margin: auto;
+}
+
+
+
+.btn-landing:hover {
+/*  opacity: 1;
+  background: #3ac162;
+  text-decoration: none;
+  color: white;*/
+  transform: scale(1.08);
+}
