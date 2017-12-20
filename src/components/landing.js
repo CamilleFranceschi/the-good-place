@@ -18,7 +18,8 @@ const Landing = () => {
     <div>
       <div className="banner">
         <div className="banner-content">
-          <h1>Find the good place to go</h1>
+          <h1>The Good Place:</h1>
+          <h2>Find the place which suits you</h2>
           <p>Best bars and restaurants advised by your like-minded friends</p>
           <a className="btn-landing">DISCOVER PLACES</a>
         </div>
@@ -33,21 +34,19 @@ const Landing = () => {
         <div className="sc-bdVaJa iOgvef" data-reactid="42">
           <div className="sc-htpNat dWdeUv" data-reactid="43">
             <div className="sc-bwzfXH bXsnOD" data-reactid="44">
-              <h2 class="sc-kAzzGY hRZpIa" data-reactid="45">Don't let the top talents go away</h2>
                 <div class="sc-chPdSV fkZxUR" data-reactid="46">
                   <div class="sc-kgoBCf jJgcuR" data-reactid="47">
-                    <h3 class="sc-kGXeez iBqPEE" data-reactid="48">Supercharge support</h3>
-                    <p class="sc-kpOJdX gjNgxa" data-reactid="49">Stop wasting time with endless private customer support threads answering the same question over and over.</p>
-                    <p class="sc-kpOJdX gjNgxa" data-reactid="50">Now your team can have conversations with your community as a whole and chat privately when a particular issue is sensitive.</p>
+                    <h3 class="sc-kGXeez iBqPEE" data-reactid="48">Build</h3>
+                    <p class="sc-kpOJdX gjNgxa" data-reactid="49">your own maps</p>
+                    
                   </div>
                   <div class="sc-kgoBCf cngWpI" data-reactid="51">
-                    <h3 class="sc-kGXeez iBqPEE" data-reactid="52">Bring people together</h3>
-                    <p class="sc-kpOJdX gjNgxa" data-reactid="53">Enlisted gives your top supporters and advocates a place to share their knowledge, empower others, and foster a place of belonging for everyone.</p>
+                    <h3 class="sc-kGXeez iBqPEE" data-reactid="52">Collaborate</h3>
+                    <p class="sc-kpOJdX gjNgxa" data-reactid="53">with your like-minded friends</p>
                   </div>
                   <div class="sc-kgoBCf cngWpI" data-reactid="54">
-                    <h3 class="sc-kGXeez iBqPEE" data-reactid="55">Tighten your feedback loop</h3>
-                    <p class="sc-kpOJdX gjNgxa" data-reactid="56">There's no better feedback than the insights that come directly from your customers.</p>
-                    <p class="sc-kpOJdX gjNgxa" data-reactid="57">Think of Enlisted as a new direct line to discovering what your audience wants the most.</p>
+                    <h3 class="sc-kGXeez iBqPEE" data-reactid="55">Discover</h3>
+                    <p class="sc-kpOJdX gjNgxa" data-reactid="56">places/maps match your personal interests</p>
                   </div>
                 </div>
               </div>
@@ -64,16 +63,12 @@ const Landing = () => {
           </div>
           <div class="sc-bdVaJa iOgvef" data-reactid="64">
             <div class="sc-bwzfXH bXsnOD" data-reactid="65">
-              <div class="sc-kEYyzF kjSZfr" data-reactid="69">
-                <h2 class="sc-jKJlTe tgMkJ" data-reactid="70">An amazing solution</h2>
-                <p class="sc-kkGfuU UQFWb" data-reactid="71">Conversations on Enlisted are real-time chat, just like your favorite messaging app. But on Enlisted, conversations continue to provide value to more and more people over time.</p>
-                <p class="sc-kkGfuU UQFWb" data-reactid="72">Every conversation gets a unique link to make it easy for people to discover, share, or save for later.</p>
-              </div>
+              
             </div>
           </div>
         </div>
 
-      // <svg viewBox="0 0 1920 240" className="svg-wave"><title id="title">goop</title><g><path d="M1920,144.5l0,95.5l-1920,0l0,-65.5c196,-36 452.146,-15.726 657.5,8.5c229.698,27.098 870,57 1262.5,-38.5Z"></path></g></svg>
+       <svg viewBox="0 0 1920 240" className="svg-wave"><title id="title">goop</title><g><path d="M1920,144.5l0,95.5l-1920,0l0,-65.5c196,-36 452.146,-15.726 657.5,8.5c229.698,27.098 870,57 1262.5,-38.5Z"></path></g></svg>
         {/* <svg  viewBox="0 0 1920 240" id="goop"><title id="title">goop</title><g><path d="M1920,144.5l0,95.5l-1920,0l0,-65.5c196,-36 452.146,-15.726 657.5,8.5c229.698,27.098 870,57 1262.5,-38.5Z"></path></g></svg> */}
         {/* <svg className="goop__InlineSvg-s6dcphf-0 GeMIC" fill-rule="evenodd" clip-rule="evenodd" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" viewBox="0 0 1920 240" id="goop"><title id="title">goop</title><g><path d="M1920,144.5l0,95.5l-1920,0l0,-65.5c196,-36 452.146,-15.726 657.5,8.5c229.698,27.098 870,57 1262.5,-38.5Z"></path></g></svg> */}
     </div>

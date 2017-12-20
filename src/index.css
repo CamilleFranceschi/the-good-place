@@ -1,5 +1,36 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'custom_3339';
+}
+
+@font-face{
+  font-family:"Avenir Next";
+  src:url("/fonts/58697dcba85f2748dc5fc1e0.woff") format("woff");
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* @font-face{
+  font-family:"Avenir Next";
+  src:url("/fonts/avenir/1704d161-44ab-4854-a066-fe47d583a3a6.woff2?domain=theperfectgridbook.com&md5=ALIaniv3Csg3aZUfzEM1FQ") format("woff2"),
+    url("/fonts/avenir/95aa7ca1-de33-40d9-ae40-ff045fcada66.woff?domain=theperfectgridbook.com&md5=tmagw7gjrxErkTmarxYPCA") format("woff");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face{
+  font-family:"Avenir Next";
+  src:url("/fonts/avenir/c4ec49e5-4817-4f05-9bee-cec6f46f9d61.woff2?domain=theperfectgridbook.com&md5=_V5pzO3_AwWjKPcUWeku8g") format("woff2"),
+    url("/fonts/avenir/8e0e32b3-034a-41e8-bd15-c22974ebcdb5.woff?domain=theperfectgridbook.com&md5=sh3O9e-idizuquK9a_5m-g") format("woff");
+    font-style: normal;
+    font-weight: 600;
+} */
+
+@font-face {
+  font-family: 'custom_3339';
+	src: url("/fonts/58f1e4ea2967626a5ffc2695.woff") format('woff');
+	font-style:  normal;
+	font-weight: 700;
+
 }
