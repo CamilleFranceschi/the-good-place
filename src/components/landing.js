@@ -34,19 +34,22 @@ const Landing = () => {
         <div className="sc-bdVaJa iOgvef" data-reactid="42">
           <div className="sc-htpNat dWdeUv" data-reactid="43">
             <div className="sc-bwzfXH bXsnOD" data-reactid="44">
-                <div class="sc-chPdSV fkZxUR" data-reactid="46">
-                  <div class="sc-kgoBCf jJgcuR" data-reactid="47">
+                <div class="sc-chPdSV fkZxUR args-container" data-reactid="46">
+                  <div class="sc-kgoBCf jJgcuR args-element" data-reactid="47">
+                    <i class="large args-icon material-icons">build</i>
                     <h3 class="sc-kGXeez iBqPEE" data-reactid="48">Build</h3>
                     <p class="sc-kpOJdX gjNgxa" data-reactid="49">your own maps</p>
-                    
+
                   </div>
-                  <div class="sc-kgoBCf cngWpI" data-reactid="51">
+                  <div class="sc-kgoBCf cngWpI args-element" data-reactid="51">
+                    <i class="large args-icon material-icons">people</i>
                     <h3 class="sc-kGXeez iBqPEE" data-reactid="52">Collaborate</h3>
                     <p class="sc-kpOJdX gjNgxa" data-reactid="53">with your like-minded friends</p>
                   </div>
-                  <div class="sc-kgoBCf cngWpI" data-reactid="54">
+                  <div class="sc-kgoBCf cngWpI args-element" data-reactid="54">
+                    <i class="large args-icon material-icons">place</i>
                     <h3 class="sc-kGXeez iBqPEE" data-reactid="55">Discover</h3>
-                    <p class="sc-kpOJdX gjNgxa" data-reactid="56">places/maps match your personal interests</p>
+                    <p class="sc-kpOJdX gjNgxa" data-reactid="56">maps match your personal interests</p>
                   </div>
                 </div>
               </div>
@@ -63,7 +66,7 @@ const Landing = () => {
           </div>
           <div class="sc-bdVaJa iOgvef" data-reactid="64">
             <div class="sc-bwzfXH bXsnOD" data-reactid="65">
-              
+
             </div>
           </div>
         </div>
