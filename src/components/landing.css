@@ -34,7 +34,7 @@
 }
 
 .banner-content {
-  padding: 180px 119px;
+  padding: 150px 119px;
 }
 
 
@@ -60,6 +60,22 @@
 }
 .args-icon {
   font-size: 70px;
+}
+
+
+.sponsorship-code-input {
+  /*padding: 10px;*/
+  /*margin-right: 5px;*/
+}
+
+.sponsorship-code-input input {
+  /*height: 40px;*/
+  /*font-size: 20px;*/
+  /*padding-left: 5px;*/
+  /*color: #999;*/
+  /*height: 100%;*/
+  /*width: 100%;*/
+  /*paddings: 25px 0px;*/
 }
 
 .svg-wave {

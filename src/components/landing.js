@@ -21,7 +21,10 @@ const Landing = () => {
           <h1>The Good Place:</h1>
           <h2>Find the place which suits you</h2>
           <p>Best bars and restaurants advised by your like-minded friends</p>
-          <a className="btn-landing">DISCOVER PLACES</a>
+          <div className="input-group sponsorship-code-input">
+            <input type="text" placeholder="Enter your sponsorship code"/>
+            <a className="btn-landing input-group-addon">DISCOVER PLACES</a>
+          </div>
         </div>
       </div>
 
